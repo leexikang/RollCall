@@ -11,6 +11,7 @@ class PostTransformer extends TransformerAbstract
 	{
 	    return [
                 'name' => $post->name,
+                'created_at' => $post->created_at->format('Y-m-d'),
 	    ];
 	}
 }

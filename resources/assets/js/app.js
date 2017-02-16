@@ -13,9 +13,11 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+Vue.component('navigation', require('./components/Nav'));
 Vue.component('example', require('./components/Example.vue'));
 Vue.component('user-form', require('./components/UserForm.vue'));
 Vue.component('post-form', require('./components/PostForm.vue'));
+Vue.component('posts', require('./components/Posts.vue'));
 
 const app = new Vue({
     el: '#app',

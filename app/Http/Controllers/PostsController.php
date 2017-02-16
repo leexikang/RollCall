@@ -37,13 +37,15 @@ class PostsController extends ApiController
      */
     public function store(Request $request)
     {
-       $this->validate($request,[
+       $this->validate($request, [
         'name' => 'required',
         ]);
-       $this->forceCreate([
-        'name' => $request->name;
-        ])
-       return ['message': 'created a post'];
+
+       Post::forceCreate([
+        'name' => $request->name
+        ]);
+
+       return ['message' => 'created a post'];
    }
 
     /**

@@ -67,7 +67,8 @@ class PostsController extends ApiController
      */
     public function edit(Post $post)
     {
-        //
+        return $this->transformItem($post, new PostTransformer); 
+
     }
 
     /**

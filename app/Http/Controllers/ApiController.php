@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use League\Fractal\Manager;
 use Illuminate\Http\Request;
 use League\Fractal\Resource\Collection;
+use League\Fractal\Resource\Item;
 
 class ApiController extends Controller
 {
@@ -26,5 +27,10 @@ class ApiController extends Controller
     }
 
 
+    public function transformItem($data, $transformer)
+    {    
+        $resource = new Item($data, $transformer);
+        return $data = $this->fractal->createData($resource)->toJson();
+    }
 
 }

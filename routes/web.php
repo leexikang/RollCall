@@ -18,3 +18,5 @@ Route::get('/', function () {
 Route::get('/users', 'UsersController@index');
 Route::get('/posts', 'PostsController@index');
 Route::post('/posts', 'PostsController@store');
+Route::get('/posts/{post}/edit', 'PostsController@edit');
+

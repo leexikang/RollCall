@@ -12,7 +12,7 @@ let routes =[
 	},
 	{
 		path: '/posts/:id/edit',
-		component: require('./components/PostEdit')
+		component: require('./components/PostForm')
 	}
 ];
 

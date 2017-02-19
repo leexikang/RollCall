@@ -19,4 +19,5 @@ Route::get('/users', 'UsersController@index');
 Route::get('/posts', 'PostsController@index');
 Route::post('/posts', 'PostsController@store');
 Route::get('/posts/{post}/edit', 'PostsController@edit');
+Route::put('/posts/{post}/edit', 'PostsController@update');
 

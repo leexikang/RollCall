@@ -80,7 +80,9 @@ class PostsController extends ApiController
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $post->name = $request->name;
+        $post->save();
+        return $this->transformItem($post, new PostTransformer); 
     }
 
     /**

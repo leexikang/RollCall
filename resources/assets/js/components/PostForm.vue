@@ -6,7 +6,6 @@
 			<input class="input is-primary" name=
 			"name" type="text"  v-model="form.name" placeholder="Text input">
 		</p>	
-		{{ getPostData }}
 		<span class="help is-danger" v-if="form.errors.has('name')" v-text="form.errors.get('name')"></span>
 		<button type="submit" class="button" :disabled="form.errors.any()"> Create </button>
 	</form>
@@ -16,36 +15,47 @@
 import Form from '../core/form';
 
 	export default {
-		props: ['postData'],
 		data() {
 			return{
+				action: "post",
 				name: "",
+				url: "/posts",
 				form: new Form({
-					name: ''
-				})
-			}
-		},
-		computed:{
-			getPostData(){
-				return this.postData.name;
+					'name': ""
+				}),
 			}
 		},
 		methods:{
+
 			onSubmit(){
-				this.form.submit('post', '/posts')
-				.then(data => console.log(data))
+				this.form.submit(this.action, this.url)
+				.then(data => {
+					if(this.action = 'put' ){
+						postUpdated();
+					}else{
+						postCreated();
+					}
+				})
 				.catch(errors => console.log(errors));
+			},
+			postUpdated(){
+				console.log("Post Has been updated");
+			},
+			postCreated(){
+				console.log("Post has been created")
 			}
+
 		},
 		created(){
-			this.$emit('fetch-data');
-			if(this.$route.params.id){
-				console.log('edit');
-				axios.get(`posts/1/edit`)
+			let id = null;
+			if(id = this.$route.params.id){
+				this.url = `/posts/${id}/edit`;
+				this.action = 'put';
+				axios.get(this.url)
 				.then(response => {
 					this.form.name = response.data.data.name;
-				}).catch(error => console.log(error));
-				console.log(this.id);
+				})
+				.catch(errors => console.log(errors));
 			}
 
 		}
